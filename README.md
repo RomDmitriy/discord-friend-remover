@@ -9,6 +9,8 @@ A way to automatically remove all your discord friends
 
 3) Change `isTest` variable to `False` before running code
 
+4) Execute command "py __init__.py"
+
 **Important**: Leave code untouched to execute a test. No users will be deleted
 
 ***USE AT YOUR OWN RISK***
