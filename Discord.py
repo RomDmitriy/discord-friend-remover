@@ -8,7 +8,7 @@ import time
 
 class Discord:
 
-    isTest = False
+    isTest = True
     driver = None
 
     def __init__(self):
@@ -35,35 +35,33 @@ class Discord:
 
     def search_users(self):
         time.sleep(5)
+        # open "All" list friends
         self.driver.find_element(By.XPATH, '//*[@id="app-mount"]/div[2]/div[1]/div[1]/div/div[2]/div/div/div/div/main/section/div[1]/div[4]/div[2]').click()
 
-        # Get user tags
-        # users_blocks = self.driver.find_elements(By.CLASS_NAME, 'peopleListItem-u6dGxF')
-
-        # Ask for confirmation
-        # print(str(len(users_blocks)) + " users were found")
-        # answer = input("Are you sure you want to deleted them? [y/n]\n")
-        # if not answer or answer[0].lower() != 'y':
-        #     print('You did not indicate approval')
-        #     self.exit()
-
-        # Loop through users blocks
-        i = 1
+        # don't stop deleting
         while True:
+            # protection of "Invalid protector"
             try:
-                self.driver.find_elements(By.CLASS_NAME, 'actionButton-3-B2x-')[i].click()
+                # click on "More" of first user in list
+                self.driver.find_elements(By.CLASS_NAME, 'actionButton-3-B2x-')[1].click()
                 time.sleep(0.1)
+                # click on "Remove friend"
                 self.driver.find_element(By.CLASS_NAME, 'colorDanger-3umuSx').click()
                 time.sleep(0.1)
 
-                # Set isTest variable to test the code
                 if self.isTest:
+                    # click on "Cancel"
                     self.driver.find_element(By.XPATH, '//*[@id="app-mount"]/div[2]/div[1]/div[3]/div[2]/div/div/div[3]/button[2]').click()
-                else:
-                    self.driver.find_element(By.XPATH, '//*[@id="app-mount"]/div[2]/div[1]/div[3]/div[2]/div/div/div[3]/button[1]').click()
-
+                    time.sleep(2)
+                    # print success message we are there
+                    print('Test success!')
+                    return
+                
+                # click on "Confirm"
+                self.driver.find_element(By.XPATH, '//*[@id="app-mount"]/div[2]/div[1]/div[3]/div[2]/div/div/div[3]/button[1]').click()
                 time.sleep(0.5)
             except:
+                # just ignore it
                 pass
 
     def exit(self):

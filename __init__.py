@@ -1,6 +1,6 @@
 import subprocess
 
-from src.Discord import Discord
+from Discord import Discord
 
 
 # Kill any existing chrome windows
